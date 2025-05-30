@@ -12,10 +12,9 @@ async function getTodayForecast() {
 
     let currentId = document.getElementById("presentDetails");
     let presentDetails = `
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="me-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
                 <h1 style="font-size: 2.5rem; font-weight: bold;">${enteredCity}</h1>
-                <p style="font-size: 1rem; color: #ccc;">Chance of rain: ${data.current.precip_mm > 0 ? Math.round(data.current.precip_mm * 100) : 0}%</p>
                 <h1 style="font-size: 5rem;">${data.current.temp_c}°</h1>
             </div>
             <div>
@@ -35,17 +34,14 @@ async function getHourlyForecast(city) {
     let res = await axios.get(API);
     let hourlyData = res.data.forecast.forecastday[0].hour;
 
-    // Use the current time dynamically (current time: 10:40 AM IST, May 28, 2025)
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
 
-    // Filter hours starting from the current hour and take the next 6
     let filteredHours = hourlyData.filter(hour => {
         const hourTime = new Date(hour.time).getHours();
         return hourTime >= currentHour;
     }).slice(0, 6);
 
-    // If we don't have enough hours (e.g., currentHour is late in the day), fetch more days if needed
     if (filteredHours.length < 6) {
         let additionalAPI = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=2`;
         let additionalRes = await axios.get(additionalAPI);
@@ -92,7 +88,6 @@ async function getSevenDayForecast(city) {
                     <img src="${day.day.condition.icon}" alt="${day.day.condition.text}" style="width: 40px; height: 40px; margin-right: 10px;">
                     <p style="font-size: 0.9rem; color: #fff; margin: 0;">${day.day.condition.text}</p>
                 </div>
-                <p style="font-size: 0.9rem; color: #fff; margin: 0;">${day.day.maxtemp_c}°/${day.day.mintemp_c}°</p>
             </div>
         `;
     });
@@ -118,7 +113,6 @@ async function getAirConditions(city) {
                 <p style="font-size: 1rem; color: #fff; margin: 0;">${data.current.wind_kph} km/h</p>
             </div>
             <div class="col-6">
-                <p style="font-size: 0.85rem; color: #ccc; margin: 0;">Chance of rain</p>
                 <p style="font-size: 1rem; color: #fff; margin: 0;">${data.current.precip_mm > 0 ? Math.round(data.current.precip_mm * 100) : 0}%</p>
             </div>
             <div class="col-6">

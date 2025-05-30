@@ -1,9 +1,73 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-.container{
-    height: 100vh;
+body {
+    background-color: #1E2528 !important; /* Dark background from the image */
+    color: #fff !important;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1250px;
+    width: 100%;
+    height: 200vh;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-control {
+    background-color: #2A3236 !important;
+    border: none !important;
+    color: #ccc !important;
+    border-radius: 10px !important;
+    padding: 10px 15px !important;
+}
+
+.form-control::placeholder {
+    color: #888 !important;
+}
+
+.btn-success {
+    background-color: #3B82F6 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 10px 15px !important;
+}
+
+#presentDetails, #hourlyForecastDetails, #airConditionsDetails, #forecastDetails {
+    background-color: #2A3236;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+    color: #fff !important; 
+}
+
+#presentDetails h1:nth-child(2) {
+    font-size: 5rem !important;
+    color: #fff !important; 
+}
+
+#presentDetails h1, #presentDetails p {
+    color: #fff !important;
+}
+
+
+#hourlyForecastDetails .text-center {
+    background-color: #1E2528; 
+    padding: 10px;
+    border-radius: 15px;
+    margin: 0 5px;
+}
+
+#forecastDetails .d-flex {
+    background-color: #1E2528;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px !important;
 }
